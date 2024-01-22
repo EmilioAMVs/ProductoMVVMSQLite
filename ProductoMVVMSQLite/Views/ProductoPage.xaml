@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductoMVVMSQLite.Views.ProductoPage"
+             Title="Inicio"
+             BackgroundColor="AntiqueWhite">
+    <VerticalStackLayout>
+
+        <HorizontalStackLayout
+            BackgroundColor="DarkBlue">
+            <Image
+                Source="https://cdn-icons-png.flaticon.com/512/4129/4129528.png"
+                HeightRequest="50"
+                WidthRequest="100"
+                />
+            <Label 
+                Text="Lista de Productos"
+                FontSize="30"
+                TextColor="White"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+        <Label></Label>
+        <Button
+            Text="Nuevo Producto"
+            FontSize="20"
+            HorizontalOptions="Fill"
+            Command="{Binding CrearProducto}"/>
+        <Label></Label>
+        <ListView x:Name="listaProductos"
+                  RowHeight="80"
+                  ItemsSource="{Binding ListaProductos}"
+                  SelectedItem="{Binding ProductoSeleccionado}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="https://cdn-icons-png.flaticon.com/256/4972/4972679.png"
+                                   HeightRequest="50"
+                                   WidthRequest="100"/>
+                            <StackLayout Orientation="Vertical" WidthRequest="100">
+                                <Label
+                                    Text="{Binding Nombre}"
+                                    VerticalOptions="Start"
+                                    FontSize="20"/>
+                                <Label
+                                    Text="{Binding Cantidad}"
+                                    VerticalOptions="End"
+                                    FontSize="20"/>
+
+                            </StackLayout>
+                            
+                            <ImageButton Source="https://cdn-icons-png.flaticon.com/512/417/417045.png"
+                                         Command="{Binding Path=BindingContext.VerProducto, Source={x:Reference listaProductos}}"
+                                         CommandParameter="{Binding .}"
+                                         WidthRequest="50" HeightRequest="50" Margin="0,0,10,0"
+                                         BackgroundColor="AntiqueWhite"/>
+                            
+                            <ImageButton Source="https://cdn-icons-png.flaticon.com/512/4226/4226577.png"
+                                         Command="{Binding Path=BindingContext.EditarProducto, Source={x:Reference listaProductos}}"
+                                         CommandParameter="{Binding .}"
+                                         WidthRequest="50" HeightRequest="50" Margin="0,0,10,0"
+                                         BackgroundColor="AntiqueWhite"/>
+                            
+                            <ImageButton Source="https://cdn-icons-png.flaticon.com/512/3221/3221803.png"
+                                         Command="{Binding Path=BindingContext.EliminarProducto, Source={x:Reference listaProductos}}"
+                                         CommandParameter="{Binding .}"
+                                         WidthRequest="50" HeightRequest="50" Margin="0,0,10,0"
+                                         BackgroundColor="AntiqueWhite"/>
+                        </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>

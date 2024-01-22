@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductoMVVMSQLite.Views.EditProductoPage"
+             Title="Editar Producto"
+             BackgroundColor="AntiqueWhite">
+    <VerticalStackLayout>
+        <TableView>
+            <TableRoot>
+                <TableSection Title="Ingrese los nuevos datos del producto">
+                    <TextCell Text="Nuevo Nombre: "/>
+                    <EntryCell x:Name="Nombre"
+                               Placeholder="Nombre"
+                               Text= "{Binding Producto.Nombre}"/>
+                    <TextCell Text="Nueva Cantidad: "/>
+                    <EntryCell x:Name="Cantidad"
+                               Placeholder="Cantidad"
+                               Text="{Binding Producto.Cantidad}"/>
+                    <TextCell Text="Nueva Descripcion: "/>
+                    <EntryCell x:Name="Descripcion"
+                               Text="{Binding Producto.Descripcion}"
+                               Placeholder="Descripcion"/>
+
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        <Button Text="Guardar Cambios"
+                Command="{Binding EditarProducto}"/>
+    </VerticalStackLayout>
+</ContentPage>
+    
+    
