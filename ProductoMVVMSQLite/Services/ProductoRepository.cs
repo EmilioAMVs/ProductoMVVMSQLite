@@ -21,121 +21,91 @@ namespace ProductoMVVMSQLite.Services
         SQLiteConnection connection;
 
         public ProductoRepository() {
-
             connection = new SQLiteConnection(Util.DataBasePath, Util.Flags);
             connection.CreateTable<Producto>();
-        
         }
 
 
         public List<Producto> GetAll()
         {
             List<Producto> ListaProductos = new List<Producto>();
-
             try
             {
-
                 ListaProductos = connection.Table<Producto>().ToList(); 
-                
             } 
             catch(Exception ex)
             {
-
                 Console.WriteLine(ex.Message);
-
             }
-
             return ListaProductos;
         }
 
         public Producto Get(int IdProducto)
         {
             Producto producto = null;
-
             try
             {
-
                 producto = connection.Table<Producto>().FirstOrDefault(x=>x.IdProducto==IdProducto);
-
             } 
             catch(Exception ex)
             {
-
                 Console.WriteLine(ex.Message);
-
             }
-
             return producto;
-
         }
 
         public void Add(Producto producto)
         {
             try
             {
-
                 connection.Insert(producto);
-                // Disparo el evento para que se actualice la vista principal
+                // Actualizar Vista
                 OnProductoAgregado();
-
             } 
             catch(Exception ex) 
             {
-
                 Console.WriteLine(ex.Message);
-
             }
         }
 
-        public void Update(Producto producto)
+        public void Update(Producto productoSeleccionado)
         {
             try
             {
-                if (producto.IdProducto != 0)
+                if (productoSeleccionado.IdProducto != 0)
                 {
-
-                    connection.Update(producto);
-                    // Disparo el evento para que se actualice la vista principal
+                    connection.Update(productoSeleccionado);
+                    // Actualizar Vista
                     OnProductoAgregado();
-
                 }
-
             }
             catch(Exception ex) 
             { 
-
                 Console.WriteLine(ex.Message); 
-
             }
         }
 
-        public void Delete(Producto producto)
+        public void Delete(Producto productoEliminar)
         {
             try
             {
-
-                if (producto.IdProducto != 0)
+                if (productoEliminar.IdProducto != 0)
                 {
-
-                    connection.Delete(producto);
+                    connection.Delete(productoEliminar);
+                    // Actualizar Vista
                     OnProductoAgregado();
-
                 }
             } 
             catch (Exception ex) 
             {
-
                 Console.WriteLine(ex.Message);
-
             }
         }
 
-        // Método para disparar el evento
+        // Método para Actualizar Vista
         protected virtual void OnProductoAgregado()
         {
-
             ProductoAgregado?.Invoke(this, EventArgs.Empty);
-
         }
     }
 }

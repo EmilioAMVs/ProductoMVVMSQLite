@@ -11,14 +11,14 @@
                     <TextCell Text="Nuevo Nombre: "/>
                     <EntryCell x:Name="Nombre"
                                Placeholder="Nombre"
-                               Text= "{Binding Producto.Nombre}"/>
+                               Text= "{Binding ProductoEditar.Nombre}"/>
                     <TextCell Text="Nueva Cantidad: "/>
                     <EntryCell x:Name="Cantidad"
                                Placeholder="Cantidad"
-                               Text="{Binding Producto.Cantidad}"/>
+                               Text="{Binding ProductoEditar.Cantidad}"/>
                     <TextCell Text="Nueva Descripcion: "/>
                     <EntryCell x:Name="Descripcion"
-                               Text="{Binding Producto.Descripcion}"
+                               Text="{Binding ProductoEditar.Descripcion}"
                                Placeholder="Descripcion"/>
 
                 </TableSection>

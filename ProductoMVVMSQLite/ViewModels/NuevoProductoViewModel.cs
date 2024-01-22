@@ -21,13 +21,13 @@ namespace ProductoMVVMSQLite.ViewModels
             SoloLectura = false;
         }
 
-        public NuevoProductoViewModel(Producto pSeleccionado)
+        public NuevoProductoViewModel(Producto productoSeleccionado)
         {
             CreacionDeProducto = false;
             SoloLectura = true;
-            Nombre = pSeleccionado.Nombre;
-            Cantidad = pSeleccionado.Cantidad.ToString();
-            Descripcion = pSeleccionado.Descripcion;
+            Nombre = productoSeleccionado.Nombre;
+            Cantidad = productoSeleccionado.Cantidad.ToString();
+            Descripcion = productoSeleccionado.Descripcion;
         }
 
         public ICommand CrearProducto =>

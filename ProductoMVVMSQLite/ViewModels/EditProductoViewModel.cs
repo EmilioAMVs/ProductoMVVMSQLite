@@ -7,30 +7,25 @@ namespace ProductoMVVMSQLite.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class EditProductoViewModel
     {
+        public Producto ProductoEditar { get; set; }
 
-        public Producto Producto { get; set; }
-
-        public EditProductoViewModel(Producto producto)
+        public EditProductoViewModel(Producto productoSeleccionado)
         {
-
-            Producto = producto;
-
+            ProductoEditar = productoSeleccionado;
         }
 
         public ICommand EditarProducto =>
             new Command( async () => 
             {
-                Producto producto = new Producto
+                Producto productoEditado = new Producto
                 {
-                    Nombre = Producto.Nombre,
-                    Descripcion = Producto.Descripcion,
-                    Cantidad = Producto.Cantidad
+                    Nombre = ProductoEditar.Nombre,
+                    Descripcion = ProductoEditar.Descripcion,
+                    Cantidad = ProductoEditar.Cantidad
                 };
 
-                App.productoRepository.Update(producto);
-
+                App.productoRepository.Update(productoEditado);
                 await App.Current.MainPage.Navigation.PopAsync();
             });
-
     }
 }
